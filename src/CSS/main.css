@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.mmain{
+    height: 100vh;
+    background-color: black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mbody{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.mbody select {
+    font-size: 20px;
+    width: 200px;
+}
