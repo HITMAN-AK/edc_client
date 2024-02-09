@@ -1,61 +1,42 @@
-import React, { useState } from "react";
-import "../src/CSS/main.css"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../src/CSS/main.css";
+import { useNavigate } from "react-router";
 function Main() {
+  const navigate = useNavigate();
+  const [colleges, setColleges] = useState([]);
   const [selectedCollege, setSelectedCollege] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedStaff, setSelectedStaff] = useState("");
-  const colleges = [
-    {
-      name: "KRCT",
-      departments: [
-        {
-          name: "PRINCIPLE OFFICE",
-          staff: ["AK"],
-        },
-        {
-          name: "AIML",
-          staff: ["aml1", "aml2", "aml3"],
-        },
-        {
-          name: "CSE",
-          staff: ["cse1", "cse2", "cse3"],
-        },
-        {
-          name: "AIDS",
-          staff: ["ads1", "ads2", "ads3"],
-        },
-        {
-          name: "MECH",
-          staff: ["mec1", "mec2", "mec3"],
-        },
-        {
-          name: "CIVIL",
-          staff: ["civ1", "civ2", "civ3"],
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    const gd = async () => {
+      await axios.post("http://localhost:800/public/gd").then((res) => {
+        setColleges(res.data.det);
+      });
+    };
+    gd();
+  }, []);
 
-  const handleCollegeChange = (e) => {
-    const collegeName = e.target.value;
-    setSelectedCollege(collegeName);
+  const handleCollegeChange = (event) => {
+    setSelectedCollege(event.target.value);
     setSelectedDepartment("");
+  };
+
+  const handleDepartmentChange = (event) => {
+    setSelectedDepartment(event.target.value);
     setSelectedStaff("");
   };
 
-  const handleDepartmentChange = (e) => {
-    const departmentName = e.target.value;
-    setSelectedDepartment(departmentName);
-    setSelectedStaff("");
+  const handleStaffChange = (event) => {
+    setSelectedStaff(event.target.value);
   };
-
-  const handleStaffChange = (e) => {
-    const staffName = e.target.value;
-    setSelectedStaff(staffName);
+  const sub = () => {
+    navigate("/ca");
   };
   return (
     <div className="mmain">
       <div className="mbody">
+        <div id="cao">Check the availability of the officials...</div>
         <select
           id="colleges"
           value={selectedCollege}
@@ -63,7 +44,7 @@ function Main() {
         >
           <option value="">Select a college</option>
           {colleges.map((college) => (
-            <option key={college.id} value={college.name}>
+            <option key={college._id} value={college.name}>
               {college.name}
             </option>
           ))}
@@ -79,7 +60,7 @@ function Main() {
               colleges
                 .find((college) => college.name === selectedCollege)
                 .departments.map((department) => (
-                  <option key={department.name} value={department.name}>
+                  <option key={department._id} value={department.name}>
                     {department.name}
                   </option>
                 ))}
@@ -95,12 +76,15 @@ function Main() {
                   (department) => department.name === selectedDepartment
                 )
                 .staff.map((staffMember) => (
-                  <option key={staffMember} value={staffMember}>
-                    {staffMember}
+                  <option key={staffMember._id} value={staffMember.name}>
+                    {staffMember.name}
                   </option>
                 ))}
           </select>
         </>
+        <button type="submit" onClick={sub}>
+          SUBMIT
+        </button>
       </div>
     </div>
   );

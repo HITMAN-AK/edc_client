@@ -1,24 +1,50 @@
-body{
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
-.mmain{
-    height: 100vh;
-    background-color: black;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.mmain {
+  height: 100vh;
+  background-image: url("../IMAGE/bc.jpg");
+  background-position: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.mbody{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+.mbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .mbody select {
-    font-size: 20px;
-    width: 200px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  width: 250px;
+  margin-top: 10px;
+}
+.mbody option {
+  color: orange;
+  font-size: 15px;
+  background-color: black;
+}
+#cao {
+  color: orange;
+  font-size: 20px;
+}
+.mbody button {
+  margin-top: 10px;
+  border-radius: 20px;
+  background-color: black;
+  border: 2px solid white;
+  color: red;
 }
