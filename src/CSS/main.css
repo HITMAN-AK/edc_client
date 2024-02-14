@@ -25,6 +25,19 @@ body {
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+.cbody{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0,0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
 .mbody select {
   background-color: black;
   color: white;
@@ -47,4 +60,17 @@ body {
   background-color: black;
   border: 2px solid white;
   color: red;
+}
+.cbody button {
+  margin-top: 10px;
+  border-radius: 20px;
+  background-color: black;
+  border: 2px solid white;
+  color: red;
+}
+.cbody h4{
+  color: orange;
+}
+.cbody h4 span{
+  color: white;
 }
