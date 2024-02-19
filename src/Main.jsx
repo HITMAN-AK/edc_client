@@ -9,7 +9,6 @@ function Main() {
   const [n, setn] = useState();
   const [a, seta] = useState();
   const [w, setw] = useState();
-  const [h, seth] = useState();
   const [sa, setsa] = useState(false);
   const [sc, setsc] = useState("green");
   useEffect(() => {
@@ -54,7 +53,6 @@ function Main() {
               } else {
                 setsc("red");
               }
-              seth(res.data.leave);
               setn(res.data.name);
               setw(res.data.workingtime);
             });
@@ -78,9 +76,6 @@ function Main() {
           </h4>
           <h4>
             WORKING HOURS : <span>{w}</span>
-          </h4>
-          <h4>
-            LEAVE : <span>{h}</span>
           </h4>
           <button onClick={cl}>CLOSE</button>
         </div>
