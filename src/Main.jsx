@@ -9,8 +9,10 @@ function Main() {
   const [n, setn] = useState();
   const [a, seta] = useState();
   const [w, setw] = useState();
+  const [t, sett] = useState();
   const [sa, setsa] = useState(false);
   const [sc, setsc] = useState("green");
+  const [time, settime] = useState(false);
   useEffect(() => {
     const gd = async () => {
       await axios.post("http://localhost:800/public/gd").then((res) => {
@@ -19,7 +21,20 @@ function Main() {
     };
     gd();
   }, []);
-
+  const formatTime = (timeString) => {
+    const timeParts = timeString.split(":");
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const formattedTime = new Date(0, 0, 0, hours, minutes).toLocaleTimeString(
+      "en-IN",
+      {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      }
+    );
+    return formattedTime;
+  };
   const handleCollegeChange = (event) => {
     setSelectedCollege(event.target.value);
     setSelectedDepartment("");
@@ -50,6 +65,10 @@ function Main() {
               seta(res.data.s);
               if (res.data.s === "AVAILABLE") {
                 setsc("green");
+              } else if (res.data.s === "NOT AVAILABLE") {
+                settime(res.data.t);
+                sett(res.data.dur);
+                setsc("red");
               } else {
                 setsc("red");
               }
@@ -74,6 +93,12 @@ function Main() {
           <h4>
             AVAILABILITY : <span style={{ color: `${sc}` }}>{a}</span>
           </h4>
+          {time && (
+            <h4>
+              UPTO :{" "}
+              <span style={{ color: `${sc}` }}>{time && formatTime(t)}</span>
+            </h4>
+          )}
           <h4>
             WORKING HOURS : <span>{w}</span>
           </h4>
